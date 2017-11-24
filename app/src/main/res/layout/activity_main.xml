@@ -25,8 +25,9 @@
         android:layout_marginTop="24dp"
         android:max="300"
         android:progress="120"
-        app:layout_constraintTop_toBottomOf="@+id/textBPM"
-        tools:layout_editor_absoluteX="168dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textBPM" />
 
     <Button
         android:id="@+id/buttonPlayStop"
