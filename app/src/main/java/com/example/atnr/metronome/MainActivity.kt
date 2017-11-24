@@ -15,12 +15,12 @@ class MainActivity : AppCompatActivity(),OnSeekBarChangeListener {
     //define seek bar and textView for BPM number
     private var bpmView: TextView? = null
     private var seekBarView: SeekBar? = null
+
+    //Initial BPM
     private var bpmVal: Long = 120
 
     //handler
     val handler = Handler()
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(),OnSeekBarChangeListener {
 
         //playButton
         playButton.setOnClickListener {
-            bpmVal = Mills()
+            bpmVal = calcMills()
             handler.post(runnable)
         }
 
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity(),OnSeekBarChangeListener {
 
     }
 
-    private fun Mills():Long {
+    private fun calcMills():Long {
 
         var Str = bpmView!!.text.toString()
         var count: Int = Integer.parseInt(Str)
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(),OnSeekBarChangeListener {
 
     override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
         // called when progress is changed
-        bpmVal = Mills()
+        bpmVal = calcMills()
         bpmView!!.text = progress.toString()
     }
 
