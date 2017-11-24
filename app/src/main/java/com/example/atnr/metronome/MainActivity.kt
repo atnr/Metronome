@@ -41,11 +41,10 @@ class MainActivity : AppCompatActivity(),OnSeekBarChangeListener {
          val playButton = this.buttonPlayStop
          val stopButton = this.buttonStop
 
-
-
-
         val runnable = object : Runnable {
             override fun run() {
+
+                //Use high tone on the first beat
                 if(beatCount==0){
                     soundPool.play(soundHigh, 1.0f, 1.0f, 0, 0, 1.0f)
                 }else{
@@ -54,6 +53,7 @@ class MainActivity : AppCompatActivity(),OnSeekBarChangeListener {
 
                 beatCount++
 
+                //Reset count after forth beat
                 if(beatCount>3){
                     beatCount=0
                 }
@@ -62,13 +62,13 @@ class MainActivity : AppCompatActivity(),OnSeekBarChangeListener {
             }
         }
 
-        //playButtonで再生
+        //playButton
         playButton.setOnClickListener {
             bpmVal = Mills()
             handler.post(runnable)
         }
 
-        //stopButtonで停止
+        //stopButton
         stopButton.setOnClickListener {
             handler.removeCallbacks(runnable)
             //soundPool.release();
@@ -79,24 +79,12 @@ class MainActivity : AppCompatActivity(),OnSeekBarChangeListener {
     }
 
     private fun Mills():Long {
-
-        //これで数字は動いた
+        
         var Str = bpmView!!.text.toString()
         var count: Int = Integer.parseInt(Str)
         var mills = 1000.0 * 60.0 / count.toLong()
         return mills.toLong()
-        //count++
-        //bpmView!!.text = count.toString()
-        //数字を動かすのはここまで
 
-        //load sound
-
-        //val se:Button = findViewById(R.id.buttonPlayStop)
-        //se.setOnClickListener{
-
-        //    soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f)
-
-        //}
     }
 
     override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
