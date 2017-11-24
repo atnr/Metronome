@@ -34,12 +34,12 @@ class MainActivity : AppCompatActivity(),OnSeekBarChangeListener {
 
         var beatCount = 0
 
-         bpmView = this.textBPM
-         seekBarView = this.seekBarBPM
-         seekBarView!!.setOnSeekBarChangeListener(this)
+        bpmView = this.textBPM
+        seekBarView = this.seekBarBPM
+        seekBarView!!.setOnSeekBarChangeListener(this)
 
-         val playButton = this.buttonPlayStop
-         val stopButton = this.buttonStop
+        val playButton = this.buttonPlayStop
+        val stopButton = this.buttonStop
 
         val runnable = object : Runnable {
             override fun run() {
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity(),OnSeekBarChangeListener {
     }
 
     private fun Mills():Long {
-        
+
         var Str = bpmView!!.text.toString()
         var count: Int = Integer.parseInt(Str)
         var mills = 1000.0 * 60.0 / count.toLong()
